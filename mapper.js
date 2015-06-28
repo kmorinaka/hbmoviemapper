@@ -1,18 +1,25 @@
 // render google map
 var map;
 function initialize() {
-  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+  var myLatlng = new google.maps.LatLng(37.775, -122.4183333);
   var mapOptions = {
-    zoom: 4,
+    zoom: 12,
     center: myLatlng
   }
    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'Hello World!'
-  });
+  // var marker = new google.maps.Marker({
+  //     position: myLatlng,
+  //     map: map,
+  //     title: 'Hello World!'
+  // });
+	// var myLatlng2 = new google.maps.LatLng(39.46190190000001, -16.3670662);
+	//
+	// var marker = new google.maps.Marker({
+	// 		position: myLatlng2,
+	// 		map: map,
+	// 		title: 'Hello World!'
+	// });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -34,16 +41,16 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						var lon = value.lon;
 						console.log(lat + " "+lon)
 						var myLatlng = new google.maps.LatLng(lat, lon);
-						// var mapOptions = {
-						//   zoom: 4,
-						//   center: myLatlng
-						// }
 
 						var marker = new google.maps.Marker({
-						    position: myLatlng,
-						    title:"Hello World!"
+								position: myLatlng,
+								map: map,
+								title: lat +" " + lon
 						});
-						marker.setMap(map);
+
+
+
+
 
 // display marker on map for each lat long
 
