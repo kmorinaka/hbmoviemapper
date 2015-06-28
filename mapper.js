@@ -20,7 +20,7 @@ function initialize() {
      fillColor: "#B650FF",
      fillOpacity: 0.35,
      map: map,
-     center: loc,
+     center: myLatlng,
      radius: ((radiusInKm) * 1000),
      draggable: true
    });
