@@ -26,6 +26,8 @@ function initialize() {
     draggable: true
    });
 
+   $('#drag-button').on('click', circle);
+
    //Update the query's criteria every time the circle is dragged
    var updateCriteria = _.debounce(function() {
     var latLng = circle.getCenter();
