@@ -2,46 +2,15 @@
 <head>
 <style type="text/css">
       html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-    </style>
+</style>
 	<script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-L2_rpdgzXHVAxXetN496UR8HR9mFTM
 ">
 	</script>
+	<script src="mapper.js"></script>
 
-  <script>
-
-
-//     $(document).ready(function () {
-//       console.log("hello world!");
-//     });
-//
-    // var ref = new Firebase("https://fiery-fire-3549.firebaseio.com/");
-    //   $("#submit").click(function(){
-    //     var username = $("#username").val();
-    //     var message = $("#message").val();
-    //   });
-//
-//       ref.child("messages").push({ // child goes into messages subtree
-//         username: username,
-//         message: message
-//   }
-// });
-//
-// //we care when messages get posted so we use child added event
-// ref.child("messages").on("child_added", function(snapshot) { // snapshots are immutable
-//   var messageThing = snapshot.val();// get the value of snapshot which has a whole bunch of metadata
-//   console.log(messageThing) // <-- let's see what snapshot.val() looks like!
-//   // so we see that the most current added child as well as all the other children before are console.logged
-//
-// });
-//
-// var html = $("<li/>").text(messageThing.username + " said " + mmessageTHing.message);
-// $("#chat-buffer").append(html);
-
-
-  </script>
 </head>
 <body>
 	<form id="title-form">
@@ -52,37 +21,6 @@
 	</form>
 	<div id="map-canvas"></div>
 
-	<script type="text/javascript">
-// render google map
-	      function initialize() {
-	        var mapOptions = {
-	          center: { lat: -34.397, lng: 150.644},
-	          zoom: 8
-	        };
-	        var map = new google.maps.Map(document.getElementById('map-canvas'),
-	            mapOptions);
-	      }
-	      google.maps.event.addDomListener(window, 'load', initialize);
 
-	// get value from user input
-		var ref = new Firebase("https://fiery-fire-3549.firebaseio.com/");
-			$("#title-form").submit(function(evt){
-				evt.preventDefault();
-				var title = $("#title").val();
-
-				ref.child("transformed-data")
-				  .orderByChild("movieName")
-					.equalTo(title).on("child_added", function(snap) {
-						var value = snap.val();
-						var lat = value.lat;
-						var lon = value.lon;
-						console.log(lat + " "+lon)
-						});
-
-			});
-
-	// Firebase query:
-
-  </script>
 </body>
 </html>
