@@ -12,7 +12,12 @@
     snapshot.val().forEach(function(row){
       var placeName = row[10];
       if (placeName){
-        $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address="+placeName+",San%20Francisco&sensor=false",function(data){
+        console.log("place name",placeName);
+        // console.log("http://maps.googleapis.com/maps/api/geocode/json?address="+placeName+",San%20Francisco&sensor=false");
+        var uri = "http://maps.googleapis.com/maps/api/geocode/json?address="+encodeURI(placeName)+",San%20Francisco&sensor=false"; 
+        var res = encodeURI(uri);
+        console.log(res);
+        $.getJSON(res,function(data){
             
             // Check to see whether results contains any data
             if (data.results.length){
