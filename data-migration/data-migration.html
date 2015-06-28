@@ -1,0 +1,49 @@
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+<script>
+  // Read data from Firebaes
+
+  var myFirebaseRef = new Firebase("https://fiery-fire-3549.firebaseio.com/");
+  var destinationTable = myFirebaseRef.child("transformed-data");
+
+  myFirebaseRef.child("data").on("value", function(snapshot) {
+    
+    snapshot.val().forEach(function(row){
+      var placeName = row[10];
+      if (placeName){
+        $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address="+placeName+",San%20Francisco&sensor=false",function(data){
+            
+            // Check to see whether results contains any data
+            if (data.results.length){
+              var lat = data.results[0].geometry.location.lat;
+              var lng = data.results[0].geometry.location.lng;  
+              console.log(lat+"/"+lng);
+
+              destinationTable.push({
+                movieName: row[8],
+                year : row[9] || '',
+                director : row[14] || '',
+                actor1 : row[16] || '',
+                actor2 : row[17] || '',
+                actor3 : row[18] || '',
+                locationName: row[10],
+                lat: lat,
+                lon: lng
+              });
+              console.log("saved item"+"/"+row[8]+"/"+lat+"/"+lng);
+            }
+        });
+      }
+    });
+    
+    // Go to Google Maps - Make HTTP request to translate addresses / intersections / landmarks to Lat/Lon pairs
+
+
+    // // Save back to Firebase DB
+    // alert(snapshot.val());  // Alerts "San Francisco"
+  });
+
+
+</script>
+</html>
