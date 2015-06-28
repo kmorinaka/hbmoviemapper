@@ -31,15 +31,19 @@ var geoQuery = geoFire.query({
 /* Adds new vehicle markers to the map when they enter the query */
 geoQuery.on("key_entered", function(id, latLng) {
 
-      transitFirebaseRef.child("transformed-data").child(id).on("value", function(snap){
+      transitFirebaseRef.child("transformed-data2").child(id).on("value", function(snap){
+        console.log(snap.val());
+        console.log(snap.key());
+        console.log(id);
         moviesInQuery[id] = createVehicleMarker({lat:latLng[0], lon:latLng[1], movieName: snap.val().movieName});
+
       });
 });
 
 /* Removes vehicle markers from the map when they exit the query */
 geoQuery.on("key_exited", function(id, latLng) {
   // Get the vehicle from the list of vehicles in the query
-  transitFirebaseRef.child("transformed-data").child(id).on("value", function(snap){
+  transitFirebaseRef.child("transformed-data2").child(id).on("value", function(snap){
     movies = snap.val();
     var movie = {lat:latLng[0], lon:latLng[1]};
     console.log(movie.movieName)
