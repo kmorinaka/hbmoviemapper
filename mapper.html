@@ -1,5 +1,7 @@
 <html>
 <head>
+  <link rel="stylesheet" href="foundation.css" />
+
 <style type="text/css">
       /*html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}*/
       /*#movie-info { height: 25%;}*/
@@ -31,12 +33,38 @@
   <script src="mapper.js"></script>
 </head>
 <body>
-	<form id="title-form">
+
+  <nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Search</a></h1>
+    </li>
+    <li class="has-form">
+      <div class="row collapse">
+        <div class="large-8 small-9 columns">
+          <form id="title-form">
+          <input type="text" id="title" name="title" placeholder=" &nbsp; Movie Titles">
+        </div>
+        <div class="large-4 small-3 columns">
+          <button type="submit" id="submit-title">Go</button>
+          <!-- <a href="#" class="alert button expand">Go</a>-->
+        </div>
+    </form>
+      </div>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <!--<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>-->
+  </ul>
+  </nav>
+	<!-- <form id="title-form"> -->
 		<!-- <label> -->
-      <input type="text" id="title" name="title">
+      <!-- <input type="text" id="title" name="title"> -->
     <!-- </label> -->
-		<button type="submit" id="submit-title">Enter movie title</button>
-	</form>
+		<!-- <button type="submit" id="submit-title">Enter movie title</button> -->
+	<!-- </form> -->
+
+
+
   <div id="movie-info"></div>
   <button id="drag-button">Drag</button>
 	<div id="map-canvas"></div>
