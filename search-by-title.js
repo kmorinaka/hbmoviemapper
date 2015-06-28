@@ -51,9 +51,21 @@ function removeMarkers(){
 					// push markers into array so can clear them later
 					markers.push(marker);
 // add movie info to div...another query outside for loop?
-					$("#movie-info").html("<li><ul>"+title
-					+"</ul><ul>"+value.year
-					+"</ul><ul>"+value.director+"</ul></li>");
+				$("#movie-info").html(
+'<div class="row">'
++'<div class="panel">'
++		'<h3>'+ title + '</h3>'
++		'<p>' + value.year + '</p>'
++		'<p>' + value.director + '</p>'
++		'<div><img src="' + value.imgLink + '"></div>'
+
+
++	'</div>'
++ '</div>');
+
+					// $("#movie-info").html(title);
+					// $("#movie-info").html(value.year);
+					// +"</ul><ul>"+value.director+"</ul></li>");
 				});
 
 		});
