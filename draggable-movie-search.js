@@ -1,4 +1,6 @@
 
+
+
 // Query radius
 var radiusInKm = 0.5;
 
@@ -14,6 +16,9 @@ var geoFire = new GeoFire(transitFirebaseRef.child("geofire"));
 // Keep track of all of the vehicles currently within the query
 var moviesInQuery = {};
 
+// myLatlng for center
+var myLatlng = [37.775, -122.4183333]
+
 // Create a new GeoQuery instance
 var geoQuery = geoFire.query({
   center: myLatlng,
@@ -24,8 +29,6 @@ var geoQuery = geoFire.query({
 /* Adds new vehicle markers to the map when they enter the query */
 geoQuery.on("key_entered", function(id, latLng) {
 
-      // console.log(id);
-      // console.log(latLng);
       transitFirebaseRef.child("transformed-data").child(id).on("value", function(snap){
         moviesInQuery[id] = createVehicleMarker({lat:latLng[0], lon:latLng[1], movieName: snap.val().movieName});
       });
@@ -37,6 +40,9 @@ geoQuery.on("key_exited", function(id, latLng) {
   transitFirebaseRef.child("transformed-data").child(id).on("value", function(snap){
     movies = snap.val();
     var movie = {lat:latLng[0], lon:latLng[1]};
+    console.log(movie.movieName)
+    console.log(latLng)
+
   });
   moviesInQuery[id].setMap(null);
   // Remove the vehicle from the list of vehicles in the query
