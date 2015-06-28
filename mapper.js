@@ -6,7 +6,7 @@ function initialize() {
 
   var myLatlng = new google.maps.LatLng(37.775, -122.4183333);
   var mapOptions = {
-    zoom: 11,
+    zoom: 12,
     center: myLatlng
   }
 	// create map at the hard-coded lat long for San Francisco
@@ -34,7 +34,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 				removeMarkers();
         $("#movie-info").empty();
 				var title = $("#title").val(); // pull in movie title
-
+// street view setup
 
 
 // The following loops through all movie objects with the specified movie title in firebase
@@ -47,6 +47,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						var lon = value.lon;
 						console.log(lat + " "+lon)
 						var myLatlng = new google.maps.LatLng(lat, lon);
+            var sv = new google.maps.StreetViewService();
+
 
 						    marker = new google.maps.Marker({
 								position: myLatlng,
@@ -62,6 +64,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
             });
             google.maps.event.addListener(marker, 'click', function() {
               this.info.open(map, this);
+
+
             });
 
 
