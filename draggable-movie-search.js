@@ -35,9 +35,17 @@ geoQuery.on("key_entered", function(id, latLng) {
         console.log(snap.val());
         console.log(snap.key());
         console.log(id);
-        moviesInQuery[id] = createVehicleMarker({lat:latLng[0], lon:latLng[1], movieName: snap.val().movieName});
+        moviesInQuery[id] = createVehicleMarker({lat:latLng[0], lon:latLng[1], movieName: snap.val().movieName,
+          year: snap.val().year, director: snap.val().director});
 
       });
+      for(themovie=0; themovie<moviesInQuery.keys().length; themovie++) {
+        // add movie info to div...another query outside for loop?
+        $("#movie-info").html("<li><ul>"+ movie.movieName
+        +"</ul><ul>"+ movie.year
+        +"</ul><ul>"+movie.director+"</ul></li>");
+      }
+
 });
 
 /* Removes vehicle markers from the map when they exit the query */
@@ -46,8 +54,7 @@ geoQuery.on("key_exited", function(id, latLng) {
   transitFirebaseRef.child("transformed-data2").child(id).on("value", function(snap){
     movies = snap.val();
     var movie = {lat:latLng[0], lon:latLng[1]};
-    console.log(movie.movieName)
-    console.log(latLng)
+
 
   });
   moviesInQuery[id].setMap(null);
@@ -63,6 +70,7 @@ geoQuery.on("key_exited", function(id, latLng) {
 /* Adds a marker for the inputted vehicle to the map */
 function createVehicleMarker(movie) {
   console.log(movie.movieName);
+  console.log(movie.year);
   var marker = new google.maps.Marker({
     icon: "http://www.lutece.paris.fr/tech/images/helloworld.png",
     position: new google.maps.LatLng(movie.lat, movie.lon),
@@ -71,6 +79,7 @@ function createVehicleMarker(movie) {
   });
 
   return marker;
+
 }
 
 /* Returns a blue color code for outbound vehicles or a red color code for inbound vehicles */
